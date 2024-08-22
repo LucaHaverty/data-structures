@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "queue.h"
+#include "../color_print/colorPrint.c"
 
 Node *queue_create_node(int data)
 {
@@ -97,7 +98,7 @@ void queue_delete(Queue *queue)
 
 void queue_test()
 {
-    printf("Testing queue:\n\n");
+    color_print_green("Testing queue...\n\n");
 
     Queue *queue = queue_create();
 
@@ -114,4 +115,6 @@ void queue_test()
     queue_print(queue);
 
     free(queue);
+
+    color_print_green("\nQueue test complete!\n");
 }

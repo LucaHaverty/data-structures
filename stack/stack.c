@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "stack.h"
+#include "../color_print/colorPrint.c"
 
 Node *stack_create_node(int data, Node *next)
 {
@@ -90,7 +91,7 @@ void stack_delete(Stack *stack)
 
 void stack_test()
 {
-    printf("Testing stack:\n\n");
+    color_print_green("Testing stack...\n\n");
     Stack *stack = stack_create();
 
     stack_print(stack);
@@ -109,4 +110,6 @@ void stack_test()
     stack_print(stack);
 
     free(stack);
+
+    color_print_green("\nStack test complete!\n");
 }

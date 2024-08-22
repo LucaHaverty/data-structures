@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "linkedList.h"
+#include "../color_print/colorPrint.c"
 
 Node *linked_list_create_node(int data)
 {
@@ -95,7 +96,7 @@ void linked_list_delete(LinkedList *list)
 
 void linked_list_test()
 {
-    printf("Testing linked list:\n\n");
+    color_print_green("Testing linked list...\n\n");
 
     LinkedList *list = linked_list_create();
 
@@ -112,4 +113,6 @@ void linked_list_test()
     linked_list_print(list);
 
     linked_list_delete(list);
+
+    color_print_green("\nLinked list test complete!\n");
 }

@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdarg.h>
 #include "hashmap.h"
+#include "../color_print/colorPrint.c"
 
 unsigned int hash(char *key)
 {
@@ -102,6 +104,7 @@ void hash_map_delete(HashMap *map)
 
 void hash_map_test()
 {
+    color_print_green("Testing hash map...\n\n");
     printf("Testing hash map:\n\n");
     HashMap *map = hash_map_create();
 
@@ -115,4 +118,6 @@ void hash_map_test()
     printf("key1 after removal: %d\n", hash_map_find(map, "key1"));
 
     hash_map_delete(map);
+
+    color_print_green("\nHash map test complete!\n");
 }
