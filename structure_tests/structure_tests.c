@@ -24,6 +24,12 @@ void structure_test_hash_map()
 
     unit_test_assert_int("Get removed key", hash_map_find(map, "key2"), INT_MIN);
 
+    hash_map_insert(map, "key1", 12);
+    hash_map_insert(map, "key2", 12);
+    hash_map_clear(map);
+
+    unit_test_assert_int("Clear hash map", hash_map_find(map, "key1"), INT_MIN);
+
     hash_map_delete(map);
 }
 
@@ -63,7 +69,7 @@ void structure_test_linked_list()
 
 void structure_test_queue()
 {
-    unit_test_describe_section("Hash map");
+    unit_test_describe_section("Queue");
     Queue *queue = queue_create();
 
     queue_enqueue(queue, 2);

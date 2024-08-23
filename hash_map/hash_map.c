@@ -87,11 +87,12 @@ void hash_map_clear(HashMap *map)
         HashMapNode *node = map->table[i];
         while (node != NULL)
         {
-            HashMapNode *temp = node;
+            HashMapNode *toDelete = node;
+            free(toDelete->key);
+            free(toDelete);
             node = node->next;
-            free(temp->key);
-            free(temp);
         }
+        map->table[i] = NULL;
     }
 }
 
