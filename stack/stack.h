@@ -1,14 +1,14 @@
 #pragma once
 
-typedef struct Node
+typedef struct StackNode
 {
     int data;
-    struct Node *next;
-} Node;
+    struct StackNode *next;
+} StackNode;
 
 typedef struct Stack
 {
-    Node *top;
+    StackNode *top;
 } Stack;
 
 Stack *stack_create();

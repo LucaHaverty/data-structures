@@ -1,15 +1,15 @@
 #pragma once
 
-typedef struct Node
+typedef struct QueueNode
 {
     int data;
-    struct Node *next;
-} Node;
+    struct QueueNode *next;
+} QueueNode;
 
 typedef struct Queue
 {
-    struct Node *front;
-    struct Node *back;
+    struct QueueNode *front;
+    struct QueueNode *back;
 } Queue;
 
 Queue *queue_create();

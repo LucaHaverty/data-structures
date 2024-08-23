@@ -1,14 +1,14 @@
 #pragma once
 
-typedef struct Node
+typedef struct ListNode
 {
     int data;
-    struct Node *next;
-} Node;
+    struct ListNode *next;
+} ListNode;
 
 typedef struct LinkedList
 {
-    Node *head;
+    ListNode *head;
 } LinkedList;
 
 LinkedList *linked_list_create();

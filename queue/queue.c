@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "queue.h"
-#include "../color_print/colorPrint.c"
 
-Node *queue_create_node(int data)
+QueueNode *queue_create_node(int data)
 {
-    Node *node = (Node *)malloc(sizeof(Node));
+    QueueNode *node = (QueueNode *)malloc(sizeof(QueueNode));
 
     node->data = data;
     node->next = NULL;
@@ -31,7 +30,7 @@ int queue_is_empty(Queue *queue)
 void queue_print(Queue *queue)
 {
     printf("Queue:\n");
-    Node *temp = queue->front;
+    QueueNode *temp = queue->front;
 
     while (temp != NULL)
     {
@@ -45,7 +44,7 @@ void queue_print(Queue *queue)
 /* Create a new node and add it to the back of the queue */
 void queue_enqueue(Queue *queue, int value)
 {
-    Node *newNode = queue_create_node(value);
+    QueueNode *newNode = queue_create_node(value);
     if (queue->front == NULL)
     {
         queue->front = newNode;
@@ -66,7 +65,7 @@ int queue_dequeue(Queue *queue)
         return INT_MIN;
     }
 
-    Node *front = queue->front;
+    QueueNode *front = queue->front;
     int returnData = front->data;
 
     queue->front = front->next;
@@ -77,11 +76,11 @@ int queue_dequeue(Queue *queue)
 
 void queue_clear(Queue *queue)
 {
-    Node *temp = queue->front;
+    QueueNode *temp = queue->front;
 
     while (temp != NULL)
     {
-        Node *toDelete = temp;
+        QueueNode *toDelete = temp;
         temp = temp->next;
         free(toDelete);
     }
@@ -94,27 +93,4 @@ void queue_delete(Queue *queue)
 {
     queue_clear(queue);
     free(queue);
-}
-
-void queue_test()
-{
-    color_print_green("Testing queue...\n\n");
-
-    Queue *queue = queue_create();
-
-    printf("Enqueued 2\n");
-    queue_enqueue(queue, 2);
-    printf("Enqueued 5\n\n");
-    queue_enqueue(queue, 5);
-
-    queue_print(queue);
-
-    printf("\nDequeued %d\n", queue_dequeue(queue));
-    printf("Dequeued %d\n\n", queue_dequeue(queue));
-
-    queue_print(queue);
-
-    free(queue);
-
-    color_print_green("\nQueue test complete!\n");
 }

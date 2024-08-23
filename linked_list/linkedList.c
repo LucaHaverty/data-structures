@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "linkedList.h"
-#include "../color_print/colorPrint.c"
 
-Node *linked_list_create_node(int data)
+ListNode *linked_list_create_node(int data)
 {
-    Node *node = (Node *)malloc(sizeof(Node));
+    ListNode *node = (ListNode *)malloc(sizeof(ListNode));
 
     node->data = data;
     node->next = NULL;
@@ -22,7 +21,7 @@ LinkedList *linked_list_create()
 
 void linked_list_print(LinkedList *list)
 {
-    struct Node *temp = list->head;
+    struct ListNode *temp = list->head;
 
     while (temp != NULL)
     {
@@ -35,8 +34,8 @@ void linked_list_print(LinkedList *list)
 
 void linked_list_append(LinkedList *list, int data)
 {
-    Node *newNode = linked_list_create_node(data);
-    Node *temp = list->head;
+    ListNode *newNode = linked_list_create_node(data);
+    ListNode *temp = list->head;
 
     if (temp == NULL)
     {
@@ -54,7 +53,7 @@ void linked_list_append(LinkedList *list, int data)
 
 void linked_list_remove(LinkedList *list, int data)
 {
-    Node *temp = list->head;
+    ListNode *temp = list->head;
 
     if (temp != NULL && temp->data == data)
     {
@@ -67,7 +66,7 @@ void linked_list_remove(LinkedList *list, int data)
     {
         if (temp->next->data == data)
         {
-            Node *toDelete = temp->next;
+            ListNode *toDelete = temp->next;
             temp->next = toDelete->next;
             free(toDelete);
             return;
@@ -78,7 +77,7 @@ void linked_list_remove(LinkedList *list, int data)
 
 void linked_list_clear(LinkedList *list)
 {
-    Node *temp = list->head;
+    ListNode *temp = list->head;
 
     while (temp != NULL)
     {
@@ -92,27 +91,4 @@ void linked_list_delete(LinkedList *list)
 {
     linked_list_clear(list);
     free(list);
-}
-
-void linked_list_test()
-{
-    color_print_green("Testing linked list...\n\n");
-
-    LinkedList *list = linked_list_create();
-
-    linked_list_print(list);
-
-    linked_list_append(list, 5);
-    linked_list_append(list, 7);
-
-    linked_list_print(list);
-
-    linked_list_remove(list, 7);
-    linked_list_remove(list, 5);
-
-    linked_list_print(list);
-
-    linked_list_delete(list);
-
-    color_print_green("\nLinked list test complete!\n");
 }

@@ -3,7 +3,6 @@
 #include <string.h>
 #include <stdarg.h>
 #include "hashmap.h"
-#include "../color_print/colorPrint.c"
 
 unsigned int hash(char *key)
 {
@@ -29,7 +28,7 @@ HashMap *hash_map_create()
 void hash_map_insert(HashMap *map, char *key, int value)
 {
     unsigned int index = hash(key);
-    Node *newNode = (Node *)malloc(sizeof(Node));
+    HashMapNode *newNode = (HashMapNode *)malloc(sizeof(HashMapNode));
     newNode->key = strdup(key);
     newNode->value = value;
     newNode->next = map->table[index];
@@ -39,7 +38,7 @@ void hash_map_insert(HashMap *map, char *key, int value)
 int hash_map_find(HashMap *map, char *key)
 {
     unsigned int index = hash(key);
-    Node *node = map->table[index];
+    HashMapNode *node = map->table[index];
     while (node != NULL)
     {
         if (strcmp(node->key, key) == 0)
@@ -54,8 +53,8 @@ int hash_map_find(HashMap *map, char *key)
 void hash_map_remove_key(HashMap *map, char *key)
 {
     unsigned int index = hash(key);
-    Node *node = map->table[index];
-    Node *prev = NULL;
+    HashMapNode *node = map->table[index];
+    HashMapNode *prev = NULL;
 
     while (node != NULL && strcmp(node->key, key) != 0)
     {
@@ -85,10 +84,10 @@ void hash_map_clear(HashMap *map)
 {
     for (int i = 0; i < TABLE_SIZE; i++)
     {
-        Node *node = map->table[i];
+        HashMapNode *node = map->table[i];
         while (node != NULL)
         {
-            Node *temp = node;
+            HashMapNode *temp = node;
             node = node->next;
             free(temp->key);
             free(temp);
@@ -100,24 +99,4 @@ void hash_map_delete(HashMap *map)
 {
     hash_map_clear(map);
     free(map);
-}
-
-void hash_map_test()
-{
-    color_print_green("Testing hash map...\n\n");
-    printf("Testing hash map:\n\n");
-    HashMap *map = hash_map_create();
-
-    hash_map_insert(map, "key1", 10);
-    hash_map_insert(map, "key2", 20);
-
-    printf("key1: %d\n", hash_map_find(map, "key1"));
-    printf("key2: %d\n", hash_map_find(map, "key2"));
-
-    hash_map_remove_key(map, "key1");
-    printf("key1 after removal: %d\n", hash_map_find(map, "key1"));
-
-    hash_map_delete(map);
-
-    color_print_green("\nHash map test complete!\n");
 }
