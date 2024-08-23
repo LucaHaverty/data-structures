@@ -61,7 +61,6 @@ int queue_dequeue(Queue *queue)
 {
     if (queue->front == NULL)
     {
-        printf("Stack underflow! No elements to peek!\n");
         return INT_MIN;
     }
 
@@ -72,6 +71,16 @@ int queue_dequeue(Queue *queue)
     free(front);
 
     return returnData;
+}
+
+int queue_peek(Queue *queue)
+{
+    if (queue->front == NULL)
+    {
+        return INT_MIN;
+    }
+
+    return queue->front->data;
 }
 
 void queue_clear(Queue *queue)

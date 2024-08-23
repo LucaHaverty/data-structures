@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
-#include "hashmap.h"
+#include "hash_map.h"
 
 unsigned int hash(char *key)
 {
@@ -47,7 +47,7 @@ int hash_map_find(HashMap *map, char *key)
         }
         node = node->next;
     }
-    return -1; // Key not found
+    return INT_MIN; // Key not found
 }
 
 void hash_map_remove_key(HashMap *map, char *key)

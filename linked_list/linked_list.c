@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "linkedList.h"
+#include "linked_list.h"
 
 ListNode *linked_list_create_node(int data)
 {
@@ -51,6 +51,24 @@ void linked_list_append(LinkedList *list, int data)
     temp->next = newNode;
 }
 
+int linked_test_get(LinkedList *list, int index)
+{
+    ListNode *temp = list->head;
+
+    while (temp != NULL)
+    {
+        if (index == 0)
+        {
+            return temp->data;
+        }
+
+        temp = temp->next;
+        index--;
+    }
+
+    return INT_MIN;
+}
+
 void linked_list_remove(LinkedList *list, int data)
 {
     ListNode *temp = list->head;
@@ -81,8 +99,9 @@ void linked_list_clear(LinkedList *list)
 
     while (temp != NULL)
     {
-        free(temp);
+        ListNode *toDelete = temp;
         temp = temp->next;
+        free(toDelete);
     }
     list->head = NULL;
 }

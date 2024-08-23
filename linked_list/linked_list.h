@@ -14,7 +14,7 @@ typedef struct LinkedList
 LinkedList *linked_list_create();
 void linked_list_print(LinkedList *list);
 void linked_list_append(LinkedList *list, int data);
+int linked_test_get(LinkedList *list, int index);
 void linked_list_remove(LinkedList *list, int data);
 void linked_list_clear(LinkedList *list);
 void linked_list_delete(LinkedList *list);
-void linked_list_test();

@@ -19,4 +19,3 @@ int stack_peek(Stack *stack);
 int stack_pop(Stack *stack);
 void stack_clear(Stack *stack);
 void stack_delete(Stack *stack);
-void stack_test();

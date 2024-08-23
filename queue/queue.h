@@ -17,6 +17,6 @@ int queue_is_empty(Queue *queue);
 void queue_print(Queue *queue);
 void queue_enqueue(Queue *queue, int data);
 int queue_dequeue(Queue *queue);
+int queue_peek(Queue *queue);
 void queue_clear(Queue *queue);
 void queue_delete(Queue *queue);
-void queue_test();

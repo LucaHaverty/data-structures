@@ -47,7 +47,6 @@ int stack_peek(Stack *stack)
 {
     if (stack_check_empty(stack))
     {
-        printf("Stack underflow! No elements to peek!\n");
         return INT_MIN;
     }
 
@@ -58,7 +57,6 @@ int stack_pop(Stack *stack)
 {
     if (stack_check_empty(stack))
     {
-        printf("Stack underflow! No elements to pop!\n");
         return INT_MIN;
     }
 
@@ -80,6 +78,8 @@ void stack_clear(Stack *stack)
         temp = temp->next;
         free(toDelete);
     }
+
+    stack->top = NULL;
 }
 
 void stack_delete(Stack *stack)
